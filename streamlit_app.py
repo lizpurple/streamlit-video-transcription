@@ -2,6 +2,7 @@ import ffmpeg
 import re
 import os
 import streamlit as st
+import chromedriver_autoinstaller
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -9,6 +10,10 @@ from selenium.webdriver.chrome.options import Options
 from chromedriver_py import binary_path
 from st_copy_to_clipboard import st_copy_to_clipboard
 import time
+
+def setup_chromium():
+    # Install or update ChromeDriver to match the Chromium version
+    chromedriver_autoinstaller.install()
 
 # Function to extract video URL using Selenium
 def extract_video_url(page_url):
@@ -21,8 +26,11 @@ def extract_video_url(page_url):
         chrome_options.add_argument("--disable-dev-shm-usage")
         chrome_options.add_argument("start-maximized")
 
-        service = Service(binary_path)
-        driver = webdriver.Chrome(service=service, options=chrome_options)
+        # Start WebDriver
+    service = Service()  # chromedriver_autoinstaller ensures the path is correct
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+
+    return driver
 
         driver.get(page_url)
         time.sleep(10)  # Allow time for JavaScript to load

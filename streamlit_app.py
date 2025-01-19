@@ -79,7 +79,7 @@ def process_video_url(video_url):
         st.error(f"Ocorreu um erro: {e}")
 
 # Streamlit UI
-st.title('Transcrição de Vídeos com Selenium e FFmpeg')
+st.title('Transcrição de Vídeos')
 page_url = st.text_input('Cole o link da página do vídeo aqui:')
 
 if st.button("Extrair e Transcrever"):

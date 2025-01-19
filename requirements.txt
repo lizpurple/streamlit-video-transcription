@@ -1,3 +1,5 @@
 streamlit
 seleniumbase
 webdriver-manager
+ffmpeg-python
+st_copy_to_clipboard

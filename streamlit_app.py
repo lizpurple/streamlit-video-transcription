@@ -34,7 +34,7 @@ with st.echo():
     options.add_argument("--remote-debugging-port=9222")
 
     driver = get_driver()
-    driver.get("https://www.jw.org/pt/biblioteca/videos/?item=pub-mwbv_202501_2_VIDEO&appLanguage=T")
+    driver.get("https://www.wikipedia.org")
 
     time.sleep(10)
     

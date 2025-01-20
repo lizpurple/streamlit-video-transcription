@@ -34,7 +34,7 @@ def get_driver():
 driver = get_driver()
 
 # Access the webpage
-driver.get("https://www.wikipedia.org")
+driver.get("https://www.example.com")
 time.sleep(5)  # Wait for the page to load
 
 # Take a screenshot and save it

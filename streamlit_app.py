@@ -1,6 +1,5 @@
 import streamlit as st
 
-"""
 ## Web scraping on Streamlit Cloud with Selenium
 
 

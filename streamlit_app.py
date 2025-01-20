@@ -33,6 +33,8 @@ with st.echo():
     options.add_argument("start-maximized")
     options.add_argument("enable-automation")
     options.add_argument("--remote-debugging-port=9222")
+    options.add_argument("--disable-blink-features")
+    options.add_argument("--disable-blink-features=AutomationControlled")
 
     driver = get_driver()
     driver.get("https://www.jw.org")

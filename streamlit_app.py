@@ -10,6 +10,7 @@ with st.echo():
     from selenium.webdriver.chrome.service import Service
     from webdriver_manager.chrome import ChromeDriverManager
     from webdriver_manager.core.os_manager import ChromeType
+    import time
 
     @st.cache_resource
     def get_driver():
@@ -35,4 +36,6 @@ with st.echo():
     driver = get_driver()
     driver.get("https://www.jw.org/pt/biblioteca/videos/?item=pub-mwbv_202501_2_VIDEO&appLanguage=T")
 
+    time.sleep(10)
+    
     st.code(driver.page_source)

@@ -27,6 +27,7 @@ with st.echo():
     options.add_argument("--no-sandbox")
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
     options.add_argument("accept-language=en-US,en;q=0.9")
+    options.add_argument("--lang=en-US,en")
     options.add_argument("accept-encoding=gzip, deflate, br")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("start-maximized")
@@ -34,7 +35,7 @@ with st.echo():
     options.add_argument("--remote-debugging-port=9222")
 
     driver = get_driver()
-    driver.get("https://www.wikipedia.org")
+    driver.get("https://www.jw.org")
 
     time.sleep(10)
     

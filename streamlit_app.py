@@ -34,7 +34,17 @@ def get_driver():
 
 # Create a WebDriver instance
 driver = get_driver()
-driver.get("https://www.jw.org")
+
+# Print ChromeDriver and browser versions
+capabilities = driver.capabilities
+chrome_driver_version = capabilities.get("chrome", {}).get("chromedriverVersion", "Unknown").split(" ")[0]
+browser_version = capabilities.get("browserVersion", "Unknown")
+
+print(f"ChromeDriver Version: {chrome_driver_version}")
+print(f"Browser Version: {browser_version}")
+
+# Load the webpage
+driver.get("https://www.example.com")
 
 # Wait for the page to load
 time.sleep(10)

@@ -36,15 +36,10 @@ def get_driver():
 driver = get_driver()
 
 # Print ChromeDriver and browser versions
-capabilities = driver.capabilities
-chrome_driver_version = capabilities.get("chrome", {}).get("chromedriverVersion", "Unknown").split(" ")[0]
-browser_version = capabilities.get("browserVersion", "Unknown")
-
-print(f"ChromeDriver Version: {chrome_driver_version}")
-print(f"Browser Version: {browser_version}")
-
+st.write(f"Browser Version: {driver.capabilities['browserVersion']}")
+st.write(f"ChromeDriver Version: {driver.capabilities['chrome']['chromedriverVersion']}")
 # Load the webpage
-driver.get("https://www.example.com")
+driver.get("https://www.jw.org")
 
 # Wait for the page to load
 time.sleep(10)

@@ -5,6 +5,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.os_manager import ChromeType
 import time
 import streamlit as st
+import requests
 
 @st.cache_resource
 def get_driver():
@@ -30,17 +31,32 @@ def get_driver():
     )
     return driver
 
+# Check network accessibility
+st.write("Testing network accessibility to jw.org...")
+try:
+    response = requests.get("https://www.jw.org", timeout=10)
+    st.write(f"Status Code: {response.status_code}")
+    st.write(f"Response Text: {response.text[:500]}")  # Show first 500 characters
+except Exception as e:
+    st.write(f"Error: {e}")
+
+# Initialize driver
 driver = get_driver()
 
-# Test with a simpler website first
+# Test with example.com
+st.write("Navigating to example.com...")
 driver.get("https://example.com")
 time.sleep(5)
 st.write("Example.com Page Source:")
 st.code(driver.page_source)
 
-# Now try jw.org
-driver.get("https://www.jw.org")
-time.sleep(10)
+# Try navigating to jw.org
+st.write("Navigating to jw.org...")
+try:
+    driver.get("https://www.jw.org")
+    st.write("Navigation to jw.org succeeded!")
+except Exception as e:
+    st.write(f"Navigation failed: {e}")
 
 # Debugging: Print browser and driver versions
 st.write(f"Browser Version: {driver.capabilities['browserVersion']}")

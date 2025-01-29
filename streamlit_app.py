@@ -34,7 +34,7 @@ def get_driver():
 
 # Create a WebDriver instance
 driver = get_driver()
-driver.get("https://www.example.com")
+driver.get("https://www.jw.org")
 
 # Wait for the page to load
 time.sleep(10)

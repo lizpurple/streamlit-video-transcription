@@ -1,31 +1,36 @@
 import streamlit as st
-import undetected_chromedriver as uc
-from selenium.webdriver.chrome.options import Options
 
-def get_page_content(url):
+"""
+## Web scraping on Streamlit Cloud with Selenium
+
+[![Source](https://img.shields.io/badge/View-Source-<COLOR>.svg)](https://github.com/snehankekre/streamlit-selenium-chrome/)
+
+This is a minimal, reproducible example of how to scrape the web with Selenium and Chrome on Streamlit's Community Cloud.
+
+Fork this repo, and edit `/streamlit_app.py` to customize this app to your heart's desire. :heart:
+"""
+
+with st.echo():
+    from selenium import webdriver
+    from selenium.webdriver.chrome.options import Options
+    from selenium.webdriver.chrome.service import Service
+    from webdriver_manager.chrome import ChromeDriverManager
+    from webdriver_manager.core.os_manager import ChromeType
+
+    @st.cache_resource
+    def get_driver():
+        return webdriver.Chrome(
+            service=Service(
+                ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+            ),
+            options=options,
+        )
+
     options = Options()
-    options.add_argument("--headless=new")  # Keep it headless
     options.add_argument("--disable-gpu")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--disable-blink-features=AutomationControlled")  # Helps avoid detection
-    options.add_argument("--window-size=375,812")  # Mimic mobile device
-    options.add_argument("user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/537.36")
+    options.add_argument("--headless")
 
-    driver = uc.Chrome(options=options)  # Use undetected Chrome
-    driver.get(url)
+    driver = get_driver()
+    driver.get("http://www.jw.org/en")
 
-    page_source = driver.page_source
-    driver.quit()
-    
-    return page_source
-
-st.title("Selenium with Undetected Chrome on Streamlit Cloud")
-st.write("Navigating to jw.org...")
-
-jw_content = get_page_content("https://www.jw.org")
-if jw_content:
-    st.write("Navigation to jw.org succeeded!")
-    st.code(jw_content)
-else:
-    st.write("Failed to fetch content.")
+    st.code(driver.page_source)

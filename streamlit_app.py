@@ -31,6 +31,6 @@ with st.echo():
     options.add_argument("--headless")
 
     driver = get_driver()
-    driver.get("http://wol.jw.org")
+    driver.get("http://example.com")
 
     st.code(driver.page_source)
